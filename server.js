@@ -68,23 +68,23 @@ app.post('/api/shorturl', async function(req, res) {
   console.log(req.body.url);
   if(test)
   {
-    const data = await checkUrl(req.body.url);
-    if(data){
+    //const data = await checkUrl(req.body.url);
+   // if(data){
 
-      res.json({original_url:data.url,short_url:data.short})
-    }
-    else
-    {
+   //   res.json({original_url:data.url,short_url:data.short})
+   // }
+    //else
+    //{
    
       let short = Math.floor(Math.random()*10000+1);
-      while(await checkShortUrl(short))
-      {
-      short = Math.floor(Math.random()*10000+1);
-      }
+      //while(await checkShortUrl(short))
+      //{
+      //short = Math.floor(Math.random()*10000+1);
+      //}
       const insertResult = await insertURL(req.body.url,short);
       if (insertResult)
       res.json({original_url:req.body.url,short_url:short});
-    }
+    //}
 
     
   }
