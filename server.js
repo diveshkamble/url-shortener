@@ -33,7 +33,7 @@ app.get('/', function(req, res) {
 
 app.get('/api/shorturl/:shorturl',async function(req,res) {
   const shorturl = await req.params.shorturl;
-  console.log(shorturl);
+  console.log('shorturl: '+shorturl);
 
     const shortTest = shortRegex.test(shorturl);
 
@@ -65,7 +65,7 @@ res.json({error:"Wrong Format"})
 // Your first API endpoint
 app.post('/api/shorturl', async function(req, res) {
   let test = urlRegex.test(req.body.url);
-  console.log(req.body.url);
+  console.log('url: '+req.body.url);
   if(test)
   {
     //const data = await checkUrl(req.body.url);
