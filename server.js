@@ -76,10 +76,10 @@ app.post('/api/shorturl', async function(req, res) {
     else
     {
    
-      let short = Math.floor(Math.random()*100000+1);
+      let short = Math.floor(Math.random()*10000+1);
       while(await checkShortUrl(short))
       {
-      short = Math.floor(Math.random()*100000+1);
+      short = Math.floor(Math.random()*10000+1);
       }
       const insertResult = await insertURL(req.body.url,short);
       if (insertResult)
@@ -168,7 +168,7 @@ const conn = await client.connect()
        const db = conn.db(dbName);
  
     let r = await db.collection('urlmain').insertOne({"url":url,"short":short,"date":await new Date()});
-   console.log(r);
+   //console.log(r);
   if(r.insertedCount!==0)
   {  // Close connection
   conn.close();
