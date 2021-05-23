@@ -90,7 +90,7 @@ app.post('/api/shorturl', async function(req, res) {
   }
   else
   {
-    res.json({"error":"Invalid Hostname"})
+    res.json({"error":"invalid url"})
   }
    
 });
