@@ -32,7 +32,7 @@ app.get('/', function(req, res) {
 
 
 app.get('/api/shorturl/:shorturl?',async function(req,res) {
-  const shorturl = await req.params.shorturl;
+  const shorturl =  req.params.shorturl;
   console.log('shorturl: '+shorturl);
 
     const shortTest = shortRegex.test(shorturl);
