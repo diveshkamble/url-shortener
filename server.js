@@ -31,7 +31,7 @@ app.get('/', function(req, res) {
 
 
 
-app.get('/api/shorturl/:shorturl',async function(req,res) {
+app.get('/api/shorturl/:shorturl?',async function(req,res) {
   const shorturl = await req.params.shorturl;
   console.log('shorturl: '+shorturl);
 
@@ -50,7 +50,7 @@ res.json({"error": "No short URL found for the given input"})
 }
 else
 {
-  res.redirect(301,data1.url);
+  res.redirect(data1.url);
 }
 
     }
