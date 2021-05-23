@@ -9,7 +9,7 @@ const MongoClient  = require('mongodb').MongoClient;
 const dbURL = process.env.DB_URI;
 const dbName = 'UrlShort';
 const urlRegex = new RegExp(/https?:\/\/[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi);
-const shortRegex = new RegExp(/([0-9]){5}/gi);
+const shortRegex = new RegExp(/([0-9]){4}/gi);
 
 
 
