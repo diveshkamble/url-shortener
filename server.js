@@ -14,8 +14,8 @@ app.use(cors());
 
 app.use(express.json());
 
-//app.use(bodyParser.json());
-//app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/public", express.static(`${process.cwd()}/public`));
 
@@ -32,13 +32,16 @@ app.get("/api/shorturl/:shorturl?", async function (req, res) {
 // Your first API endpoint
 app.post("/api/shorturl", async function (req, res) {
   const url = req.body.url;
+  console.log(url);
   //const urlHash = crypto.createHash("md5").update(url).digest("hex");
-  if (!validurl.isUri(url)) return res.json({ error: "Invalid URL" });
+  const validity = await validurl.isUri(url);
+  if (!validity) return res.json({ error: "Invalid URL" });
   else {
     const toInsert = { url };
+    console.log(toInsert);
     const exists = await db.fetch({ url }, { limit: 1 });
     console.log(exists);
-    if (exists)
+    if (exists.count != 0)
       res.json({
         original_url: exists.items[0].url,
         short_url: exists.items[0].key,
