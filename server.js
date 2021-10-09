@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000;
 const bodyParser = require("body-parser");
 const validurl = require("valid-url");
 const { Deta } = require("deta");
-const deta = Deta(process.env);
+const deta = Deta(process.env.DETA_KEY);
 const db = deta.Base("shorturl");
 
 app.use(cors());
