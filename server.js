@@ -39,17 +39,13 @@ app.post("/api/shorturl", async function (req, res) {
     const exists = await db.fetch({ url }, { limit: 1 });
     console.log(exists);
     if (exists)
-      res.send(
-        JSON.stringify({
-          original_url: exists.items[0].url,
-          short_url: exists.items[0].key,
-        })
-      );
+      res.json({
+        original_url: exists.items[0].url,
+        short_url: exists.items[0].key,
+      });
     else {
       const insertedURL = await db.put(toInsert);
-      res.send(
-        JSON.stringify({ original_url: url, short_url: insertedURL.key })
-      );
+      res.json({ original_url: url, short_url: insertedURL.key });
     }
   }
 });
