@@ -34,8 +34,9 @@ app.post("/api/shorturl", async function (req, res) {
   const url = req.body.url;
   console.log(url);
   //const urlHash = crypto.createHash("md5").update(url).digest("hex");
-  const validity = await validurl.isUri(url);
-  if (!validity) return res.json({ error: "Invalid URL" });
+  const isHTTP = await validurl.isHttpUri(url);
+  const isHTTPS = await validurl.isHttpsUri(url);
+  if (!isHTTP || !isHTTPS) return res.json({ error: "Invalid URL" });
   else {
     const toInsert = { url };
     console.log(toInsert);
