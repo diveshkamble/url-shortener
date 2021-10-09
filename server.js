@@ -36,7 +36,10 @@ app.post("/api/shorturl", async function (req, res) {
   //const urlHash = crypto.createHash("md5").update(url).digest("hex");
   const isHTTP = await validurl.isHttpUri(url);
   const isHTTPS = await validurl.isHttpsUri(url);
-  if (!isHTTP || !isHTTPS) return res.json({ error: "Invalid URL" });
+  console.log("isHTTP:" + isHTTP);
+  console.log("isHTTPS" + isHTTPS);
+
+  if (!isHTTP && !isHTTPS) return res.json({ error: "Invalid URL" });
   else {
     const toInsert = { url };
     console.log(toInsert);
